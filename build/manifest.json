@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Smart Clipboard Manager",
+  "version": "1.0.0",
+  "description": "A Chrome extension to manage and view your clipboard history",
+  "permissions": [
+    "clipboardRead",
+    "clipboardWrite",
+    "storage",
+    "contextMenus",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Smart Clipboard Manager"
+  },
+  "icons": {
+    "16": "icon16.png"
+    
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [{
+    "resources": ["icon16.png", "icon48.png", "icon128.png"],
+    "matches": ["<all_urls>"]
+  }],
+  "options_page": "options.html"
+}
